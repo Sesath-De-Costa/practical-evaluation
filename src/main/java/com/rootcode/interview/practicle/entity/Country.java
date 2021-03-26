@@ -28,4 +28,5 @@ public class Country implements SuperEntity{
     @Column(name = "country_code_2")
     private String countryCode2;
     private String country;
+    private int numeric;
 }

@@ -23,4 +23,5 @@ public class CountryGDPValuePK implements Serializable {
     private String countryCode3;
     @Column(name = "gdp_value")
     private String gdpValue;
+    private int year;
 }

@@ -9,5 +9,7 @@ import com.rootcode.interview.practicle.business.SuperBO;
  * file 'LICENSE.txt', which is part of this source code package.
  **/
 public interface GDPValueBO extends SuperBO {
-    double getGDP(String country,int year) throws Exception;
+    double getGDPByCountryCode3(String country, int year) throws Exception;
+
+    double getGDPByCountryCode2(String country, int year) throws Exception;
 }
