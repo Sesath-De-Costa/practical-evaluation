@@ -18,13 +18,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "gdp_value")
 public class GDPValue implements SuperEntity {
-    @ManyToOne
-    @JoinColumn(name = "country_code_3")
-    Country countryCode;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private double gdp;
+    @Column(nullable = false)
     private int year;
-
+    @Column(nullable = false)
+    private double gdp;
+    @ManyToOne
+    @JoinColumn(name = "code", referencedColumnName = "country_code_3", nullable = false)
+    private Country country;
 }

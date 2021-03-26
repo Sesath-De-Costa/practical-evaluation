@@ -23,10 +23,10 @@ import javax.persistence.Table;
 @Table(name = "country")
 public class Country implements SuperEntity{
     @Id
-    @Column(name = "country_code_3")
+    @Column(name="country_code_3")
     private String countryCode3;
-    @Column(name = "country_code_2")
-    private String countryCode2;
+    @Column(nullable=false)
     private String country;
-    private int numeric;
+    @Column(name="country_code_2")
+    private String countryCode2;
 }

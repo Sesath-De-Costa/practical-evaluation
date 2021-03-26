@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class GDPValueController {
 
     @Autowired
-    GDPValueBO gdpValueBO;
+    private GDPValueBO gdpValueBO;
 
     @GetMapping("/{country:/^[A-Z]{2,3}$/}/{year:\\d{4}}")
     public double getGDPValueByCountryCode3AndYear(@PathVariable String country, @PathVariable int year) throws Exception {
