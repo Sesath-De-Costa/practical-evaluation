@@ -1,7 +1,9 @@
 package com.rootcode.interview.practicle.business.util;
 
+import com.rootcode.interview.practicle.dto.CountryDTO;
 import com.rootcode.interview.practicle.dto.GDPValueDTO;
-import com.rootcode.interview.practicle.entity.CountryGDPValuePK;
+import com.rootcode.interview.practicle.entity.Country;
+import com.rootcode.interview.practicle.entity.GDPValue;
 import org.mapstruct.Mapper;
 
 /**
@@ -13,7 +15,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface EntityDTOMapper {
 
-    GDPValueDTO getGDPValueDTO(CountryGDPValuePK countryGDPValuePK);
+    GDPValue getGDPValue(GDPValueDTO dto);
 
-    CountryGDPValuePK getCountryGDPValuePK(GDPValueDTO GDPValueDTO);
+    GDPValueDTO getGDPValueDTO(GDPValue gdpValue);
+
+    Country getCountry(CountryDTO dto);
+
+    CountryDTO getCountryDTO(Country country);
+
 }

@@ -1,13 +1,10 @@
 package com.rootcode.interview.practicle.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sesath De Costa on 2021-03-26
@@ -29,4 +26,13 @@ public class Country implements SuperEntity{
     private String country;
     @Column(name="country_code_2")
     private String countryCode2;
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "country")
+    private List<GDPValue> gdpDataList = new ArrayList<>();
+
+    public Country(String countryCode3, String country, String countryCode2) {
+        this.countryCode3 = countryCode3;
+        this.country = country;
+        this.countryCode2 = countryCode2;
+    }
 }

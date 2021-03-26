@@ -18,12 +18,9 @@ public class GDPValueController {
     @Autowired
     private GDPValueBO gdpValueBO;
 
-    @GetMapping("/{country:/^[A-Z]{2,3}$/}/{year:\\d{4}}")
-    public double getGDPValueByCountryCode3AndYear(@PathVariable String country, @PathVariable int year) throws Exception {
-        if (country.length() == 3) {
-            return gdpValueBO.getGDPByCountryCode3(country, year);
-        } else {
-            return gdpValueBO.getGDPByCountryCode2(country, year);
-        }
+    //Rest endpoint for get the gdp value for a country in a particular year
+    @GetMapping(value = "/{country:[A-Za-z]{2,3}}", params = "year")
+    public double getGDPValueByCountryCode3AndYear(@PathVariable("country") String country, @RequestParam("year") int year) throws Exception {
+        return gdpValueBO.getGDPByCountryCode(country, year);
     }
 }

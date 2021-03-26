@@ -3,6 +3,8 @@ package com.rootcode.interview.practicle.dao;
 import com.rootcode.interview.practicle.entity.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 
 /**
  * Created by Sesath De Costa on 2021-03-26
@@ -12,4 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  **/
 public interface CountryDAO extends JpaRepository<Country, String> {
 
+    Optional<Country> findCountryByCountryCode2(String code);
 }

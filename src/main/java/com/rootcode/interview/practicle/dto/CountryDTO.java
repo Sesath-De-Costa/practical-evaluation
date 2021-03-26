@@ -1,15 +1,9 @@
 package com.rootcode.interview.practicle.dto;
 
-import com.rootcode.interview.practicle.entity.Country;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import java.io.Serializable;
 
 /**
  * Created by Sesath De Costa on 2021-03-26
@@ -21,9 +15,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 @ToString
-public class GDPValueDTO implements Serializable {
-    private int id;
-    private int year;
-    private double gdp;
-    private Country country;
+public class CountryDTO {
+
+    private String countryCode3;
+    private String country;
+    private String countryCode2;
 }
