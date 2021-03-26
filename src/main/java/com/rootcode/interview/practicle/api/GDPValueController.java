@@ -18,15 +18,12 @@ public class GDPValueController {
     @Autowired
     GDPValueBO gdpValueBO;
 
-    @GetMapping("/{country:/^[A-Z]{3}$/}/{year:\\d{4}}")
+    @GetMapping("/{country:/^[A-Z]{2,3}$/}/{year:\\d{4}}")
     public double getGDPValueByCountryCode3AndYear(@PathVariable String country, @PathVariable int year) throws Exception {
-
-        return gdpValueBO.getGDPByCountryCode3(country, year);
-    }
-
-    @GetMapping("/{country:/^[A-Z]{2}$/}/{year:\\d{4}}")
-    public double getGDPValueByCountryCode2AndYear(@PathVariable String country, @PathVariable int year) throws Exception {
-
-        return gdpValueBO.getGDPByCountryCode2(country, year);
+        if (country.length() == 3) {
+            return gdpValueBO.getGDPByCountryCode3(country, year);
+        } else {
+            return gdpValueBO.getGDPByCountryCode2(country, year);
+        }
     }
 }
