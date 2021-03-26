@@ -2,6 +2,7 @@ package com.rootcode.interview.practicle.business.custom.impl;
 
 import com.rootcode.interview.practicle.business.custom.GDPValueBO;
 import com.rootcode.interview.practicle.business.util.EntityDTOMapper;
+import com.rootcode.interview.practicle.dao.CountryDAO;
 import com.rootcode.interview.practicle.dao.GDPValueDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,8 @@ public class GDPValueBOImpl implements GDPValueBO {
     @Autowired
     private GDPValueDAO gdpValueDAO;
 
-
 //    @Autowired
-//    private EntityDTOMapper mapper;
+//    private CountryDAO gdpValueDAO;
 
     public GDPValueBOImpl(){
     }
@@ -31,7 +31,6 @@ public class GDPValueBOImpl implements GDPValueBO {
 
     @Override
     public double getGDPByCountryCode3(String country, int year) throws Exception {
-//        gdpValueDAO.findCountryGPDValueByCountryAndYear(country,year).;
         return 0;
     }
 
