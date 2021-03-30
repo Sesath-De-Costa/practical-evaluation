@@ -23,7 +23,6 @@ public class LogConfig {
             } else {
                 logFilePath = System.getProperty("catalina.home") + "/logs/back-end.log";
             }
-
             FileHandler fileHandler = new FileHandler(logFilePath, true);
             fileHandler.setFormatter(new SimpleFormatter());
             fileHandler.setLevel(Level.INFO);

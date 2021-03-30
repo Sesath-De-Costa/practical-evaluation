@@ -30,4 +30,48 @@ public class GDPValue implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "code", referencedColumnName = "country_code_3", nullable = false)
     private Country country;
+
+    public GDPValue() {
+    }
+
+    public GDPValue(int id, int year, double gdp, Country country) {
+        this.id = id;
+        this.year = year;
+        this.gdp = gdp;
+        this.country = country;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public double getGdp() {
+        return gdp;
+    }
+
+    public void setGdp(double gdp) {
+        this.gdp = gdp;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+
 }

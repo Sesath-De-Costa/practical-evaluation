@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PracticalApplication {
 
     public static void main(String[] args) {
-        LogConfig.initLogging();
+//        LogConfig.initLogging();
         SpringApplication.run(PracticalApplication.class, args);
     }
 

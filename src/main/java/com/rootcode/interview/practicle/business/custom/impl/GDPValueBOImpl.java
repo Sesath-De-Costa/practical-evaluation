@@ -2,13 +2,13 @@ package com.rootcode.interview.practicle.business.custom.impl;
 
 import com.rootcode.interview.practicle.business.custom.GDPValueBO;
 import com.rootcode.interview.practicle.dao.CountryDAO;
-import com.rootcode.interview.practicle.dao.GDPValueDAO;
 import com.rootcode.interview.practicle.entity.Country;
 import com.rootcode.interview.practicle.entity.GDPValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,18 +23,16 @@ import java.util.Optional;
 public class GDPValueBOImpl implements GDPValueBO {
 
     @Autowired
-    private GDPValueDAO gdpValueDAO;
-    @Autowired
     private CountryDAO countryDAO;
 
     public GDPValueBOImpl() {
     }
 
     @Override
-    public double getGDPByCountryCode(String countryCode, int year) {
-        Country country = null;
-        double gdp1 = -1;
-        double gdp2 = -1;
+    public double[] getGDPByCountryCode(String countryCode, int year) {
+        double[] gdpValues = new double[2];
+        Country country;
+
         if (countryCode.trim().length() == 3) {
             Optional<Country> optCountry = countryDAO.findById(countryCode);
             if (!optCountry.isPresent()) {
@@ -50,16 +48,37 @@ public class GDPValueBOImpl implements GDPValueBO {
                 country = optCountry.get();
             }
         }
-        for (GDPValue gdpValue : country.getGdpDataList()) {
+
+        gdpValues[0] = generateGDPValue(country.getGdpDataList(), country, year - 1);
+        gdpValues[1] = generateGDPValue(country.getGdpDataList(), country, year);
+
+        return gdpValues;
+    }
+
+    @Override
+    public List<GDPValue> getGPDValueCustomRange(List<GDPValue> gpdList) {
+        for (GDPValue gdpValue : gpdList) {
+            if (gdpValue.getYear() < 2007) {
+                gpdList.remove(gdpValue);
+            }
+        }
+        return gpdList;
+    }
+
+    double generateGDPValue(List<GDPValue> gdpValues, Country country, int year) {
+        double gdp1 = -1;
+        double gdp2 = -1;
+        for (GDPValue gdpValue : getGPDValueCustomRange(gdpValues)) {
             if (gdpValue.getYear() == (year - 1)) {
                 gdp1 = gdpValue.getGdp();
             } else if (gdpValue.getYear() == (year)) {
                 gdp2 = gdpValue.getGdp();
             }
-            if (gdp1 != -1 && gdp2 == -1) {
+            if (gdp1 != -1 && gdp2 != -1) {
                 break;
             }
         }
-        return (gdp2 - gdp1) / (gdp1) * 100;
+        return ((gdp2 - gdp1) / gdp2) * 100;
     }
+
 }
